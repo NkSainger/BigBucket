@@ -1,60 +1,75 @@
 package com.nikhil.bigbucket.fragments.loginRegister
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nikhil.bigbucket.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.nikhil.bigbucket.data.User
+import com.nikhil.bigbucket.databinding.FragmentRegisterBinding
+import com.nikhil.bigbucket.util.Resource
+import com.nikhil.bigbucket.viewmodel.RegisterViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RegisterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentRegisterBinding
+    private val viewModel by viewModels<RegisterViewModel>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+    ): View {
+        binding = FragmentRegisterBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RegisterFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegisterFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+            registerButton.setOnClickListener {
+                val user = User(
+                    firstName.text.toString().trim(),
+                    lastName.text.toString().trim(),
+                    registerEmail.text.toString().trim()
+                )
+
+                d("EMAIL", user.email)
+                val password = registerPassword.text.toString().trim()
+                viewModel.createAccountWithEmailAndPassword(user, password)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.register.collect {
+                when (it) {
+                    is Resource.Loading -> {
+                        binding.registerButton.startAnimation()
+                    }
+
+                    is Resource.Success -> {
+                        Toast.makeText(activity, "Registered Successfully", Toast.LENGTH_SHORT)
+                            .show()
+                        binding.registerButton.revertAnimation()
+                    }
+
+                    is Resource.Error -> {
+                        Toast.makeText(activity, "Got an Failure", Toast.LENGTH_SHORT).show()
+                        binding.registerButton.revertAnimation()
+                    }
+
+                    else -> {
+
+                    }
                 }
             }
+        }
     }
 }

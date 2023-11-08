@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "649887861215",
+    "project_id": "big-bucket-39b11",
+    "storage_bucket": "big-bucket-39b11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649887861215:android:3869a3710085157e841c6a",
+        "android_client_info": {
+          "package_name": "com.nikhil.bigbucket"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7ncm-WgX2Hhe1iES7hmt9JIJi9CE2RcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

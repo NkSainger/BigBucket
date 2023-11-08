@@ -106,14 +106,15 @@
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/registerEmail" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/appCompatButton2"
+            <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/registerButton"
                 style="@style/blueButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:text="Register"
                 android:textAllCaps="false"
+                app:spinning_bar_color="@color/white"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -126,7 +127,7 @@
                 android:src="@drawable/google_login"
                 android:layout_marginTop="@dimen/_7sdp"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatButton2" />
+                app:layout_constraintTop_toBottomOf="@+id/registerButton" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -146,7 +147,7 @@
                 android:layout_marginTop="@dimen/_7sdp"
                 android:src="@drawable/facebook_login"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatButton2" />
+                app:layout_constraintTop_toBottomOf="@+id/registerButton" />
 
             <TextView
                 android:layout_width="wrap_content"
