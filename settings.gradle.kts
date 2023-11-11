@@ -16,4 +16,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Big Bucket"
 include(":app")
- 

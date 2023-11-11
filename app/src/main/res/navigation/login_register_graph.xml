@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_register_graph"
-    app:startDestination="@id/registerFragment">
+    app:startDestination="@id/accountOptionsFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:popUpTo="@id/accountOptionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountOptionsFragment"
@@ -21,10 +22,19 @@
         tools:layout="@layout/fragment_account_options">
         <action
             android:id="@+id/action_accountOptionsFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_accountOptionsFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/accountOptionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -36,6 +46,7 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_registerFragment_to_loginFragment2"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popExitAnim="@anim/to_bottom" />
     </fragment>
 </navigation>
