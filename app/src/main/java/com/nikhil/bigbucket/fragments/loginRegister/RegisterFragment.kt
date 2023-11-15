@@ -8,16 +8,23 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.nikhil.bigbucket.R
 import com.nikhil.bigbucket.data.User
 import com.nikhil.bigbucket.databinding.FragmentRegisterBinding
+import com.nikhil.bigbucket.util.RegisterValidation
 import com.nikhil.bigbucket.util.Resource
 import com.nikhil.bigbucket.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class RegisterFragment : Fragment() {
+class RegisterFragment : Fragment(R.layout.fragment_register) {
     private lateinit var binding: FragmentRegisterBinding
     private val viewModel by viewModels<RegisterViewModel>()
 
@@ -33,6 +40,10 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.loginNow.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
         binding.apply {
             registerButton.setOnClickListener {
                 val user = User(
@@ -43,30 +54,61 @@ class RegisterFragment : Fragment() {
 
                 d("EMAIL", user.email)
                 val password = registerPassword.text.toString().trim()
-                viewModel.createAccountWithEmailAndPassword(user, password)
+
+                val navigateToLoginAfterRegistration =
+                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                viewModel.createAccountWithEmailAndPassword(
+                    user,
+                    password,
+                    navigateToLoginAfterRegistration
+                )
             }
         }
 
-        lifecycleScope.launch {
-            viewModel.register.collect {
-                when (it) {
-                    is Resource.Loading -> {
-                        binding.registerButton.startAnimation()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.register.collect {
+                    when (it) {
+                        is Resource.Loading -> {
+                            binding.registerButton.startAnimation()
+                        }
+
+                        is Resource.Success -> {
+                            Toast.makeText(activity, "Registered Successfully", Toast.LENGTH_SHORT)
+                                .show()
+                            binding.registerButton.revertAnimation()
+                        }
+
+                        is Resource.Error -> {
+                            Toast.makeText(activity, "Got an Failure", Toast.LENGTH_SHORT).show()
+                            binding.registerButton.revertAnimation()
+                        }
+
+                        else -> Unit
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.validation.collect { validation ->
+                    if (validation.email is RegisterValidation.Failed) {
+                        withContext(Dispatchers.Main) {
+                            binding.registerEmail.apply {
+                                requestFocus()
+                                error = validation.email.message
+                            }
+                        }
                     }
 
-                    is Resource.Success -> {
-                        Toast.makeText(activity, "Registered Successfully", Toast.LENGTH_SHORT)
-                            .show()
-                        binding.registerButton.revertAnimation()
-                    }
-
-                    is Resource.Error -> {
-                        Toast.makeText(activity, "Got an Failure", Toast.LENGTH_SHORT).show()
-                        binding.registerButton.revertAnimation()
-                    }
-
-                    else -> {
-
+                    if (validation.password is RegisterValidation.Failed) {
+                        withContext(Dispatchers.Main) {
+                            binding.registerPassword.apply {
+                                requestFocus()
+                                error = validation.password.message
+                            }
+                        }
                     }
                 }
             }
