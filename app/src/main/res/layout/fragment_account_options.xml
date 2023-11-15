@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/goToRegister"
+            android:id="@+id/appCompatButton2"
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -72,7 +72,6 @@
             app:layout_constraintTop_toTopOf="@+id/guidelineMid" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/goToLogin"
             style="@style/whiteButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -81,8 +80,8 @@
             android:textAllCaps="false"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
             app:layout_constraintEnd_toStartOf="@+id/guidelineLeft2"
-            app:layout_constraintStart_toStartOf="@+id/goToRegister"
-            app:layout_constraintTop_toBottomOf="@+id/goToRegister" />
+            app:layout_constraintStart_toStartOf="@+id/guidelineRight2"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton2" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineTop"
