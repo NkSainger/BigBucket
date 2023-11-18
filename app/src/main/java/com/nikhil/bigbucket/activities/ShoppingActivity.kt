@@ -6,9 +6,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.nikhil.bigbucket.R
 import com.nikhil.bigbucket.databinding.ActivityShoppingBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ShoppingActivity : AppCompatActivity() {
-    val binding by lazy {
+    private val binding by lazy {
         ActivityShoppingBinding.inflate(layoutInflater)
     }
 

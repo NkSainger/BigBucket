@@ -33,8 +33,7 @@ class RegisterViewModel @Inject constructor(
     val validation = _validation.receiveAsFlow()
     fun createAccountWithEmailAndPassword(
         user: User,
-        password: String,
-        navigateToLoginAfterRegistration: Unit
+        password: String
     ) {
         if (checkValidation(user, password)) {
             runBlocking {
@@ -42,7 +41,6 @@ class RegisterViewModel @Inject constructor(
             }
             firebaseAuth.createUserWithEmailAndPassword(user.email, password)
                 .addOnSuccessListener { it ->
-                    navigateToLoginAfterRegistration
                     it.user?.let {
                         saveUserInfo(it.uid, user)
                     }
@@ -68,7 +66,6 @@ class RegisterViewModel @Inject constructor(
             .set(user)
             .addOnSuccessListener {
                 _register.value = Resource.Success(user)
-
             }
             .addOnFailureListener {
                 _register.value = Resource.Error(it.message.toString())

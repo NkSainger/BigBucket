@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/img_product"
+            android:id="@+id/productImage"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:scaleType="fitCenter"
@@ -25,12 +25,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@id/img_product"
-            app:layout_constraintStart_toStartOf="@id/img_product"
-            app:layout_constraintTop_toBottomOf="@id/img_product">
+            app:layout_constraintEnd_toEndOf="@id/productImage"
+            app:layout_constraintStart_toStartOf="@id/productImage"
+            app:layout_constraintTop_toBottomOf="@id/productImage">
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/productName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,7 +53,7 @@
 
 
         <TextView
-            android:id="@+id/tv_new_price"
+            android:id="@+id/productNewPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -64,11 +64,11 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_price"
+            app:layout_constraintStart_toEndOf="@id/productPrice"
             app:layout_constraintTop_toBottomOf="@id/linear_product_name" />
 
         <TextView
-            android:id="@+id/tv_price"
+            android:id="@+id/productPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -78,7 +78,7 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/img_product"
+            app:layout_constraintStart_toStartOf="@id/productImage"
             app:layout_constraintTop_toBottomOf="@id/linear_product_name" />
 
 

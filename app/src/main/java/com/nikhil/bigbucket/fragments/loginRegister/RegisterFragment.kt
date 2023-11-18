@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import com.nikhil.bigbucket.R
 import com.nikhil.bigbucket.data.User
 import com.nikhil.bigbucket.databinding.FragmentRegisterBinding
@@ -40,10 +39,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.loginNow.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-        }
-
         binding.apply {
             registerButton.setOnClickListener {
                 val user = User(
@@ -55,12 +50,9 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 d("EMAIL", user.email)
                 val password = registerPassword.text.toString().trim()
 
-                val navigateToLoginAfterRegistration =
-                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 viewModel.createAccountWithEmailAndPassword(
                     user,
-                    password,
-                    navigateToLoginAfterRegistration
+                    password
                 )
             }
         }

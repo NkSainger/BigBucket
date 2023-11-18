@@ -10,10 +10,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="5dp">
 
         <ImageView
-            android:id="@+id/img_ad"
+            android:id="@+id/imageSpecialRvItem"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_80sdp"
             android:layout_marginStart="@dimen/_15sdp"
@@ -22,28 +23,29 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_ad_name"
+            android:id="@+id/tvSpecialProductName"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/poppins_light"
             android:text="Scotch Premium"
             android:textColor="@color/black"
             android:textSize="17sp"
-            app:layout_constraintStart_toEndOf="@id/img_ad"
-            app:layout_constraintTop_toTopOf="@id/img_ad" />
+            android:maxLines="2"
+            app:layout_constraintStart_toEndOf="@id/imageSpecialRvItem"
+            app:layout_constraintTop_toTopOf="@id/imageSpecialRvItem" />
 
         <TextView
-            android:id="@+id/tv_ad_price"
+            android:id="@+id/tvSpecialProductPrice"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display"
             android:text="$1600"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/tv_ad_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_ad_name" />
+            app:layout_constraintStart_toStartOf="@id/tvSpecialProductName"
+            app:layout_constraintTop_toBottomOf="@id/tvSpecialProductName" />
 
         <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/btn_add_to_cart"
@@ -58,9 +60,10 @@
             android:textSize="11sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_ad_price" />
+            app:layout_constraintTop_toBottomOf="@id/tvSpecialProductPrice" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:background="@drawable/icon_background"
