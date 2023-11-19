@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nikhil.bigbucket.R
 import com.nikhil.bigbucket.adapters.BestDealsProductsAdapter
@@ -62,7 +63,6 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                             hideLoading()
                             Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                         }
-
                         else -> Unit
                     }
                 }
@@ -88,7 +88,6 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                             hideLoading()
                             Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                         }
-
                         else -> Unit
                     }
                 }
@@ -133,7 +132,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         bestProductsAdapter = BestProductsAdapter()
         binding.rvBestProducts.apply {
             layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
             adapter = bestProductsAdapter
         }
     }

@@ -28,7 +28,6 @@ class MainCategoryViewModel @Inject constructor(
     val bestProductsState: StateFlow<Resource<List<Product>>> = _bestProductsState
 
     private val pagingInfo = PagingInfo()
-
     init {
         fetchSpecialProducts()
         fetchBestDealsProducts()
@@ -41,7 +40,7 @@ class MainCategoryViewModel @Inject constructor(
                 _bestProductsState.emit(Resource.Loading())
             }
             firestore.collection("Products").limit(pagingInfo.bestProductPage * 10)
-                .whereEqualTo("category", "Best Product")
+                .whereEqualTo("category", "Best Products")
                 .get()
                 .addOnSuccessListener { result ->
                     val bestProductsList = result.toObjects(Product::class.java)
