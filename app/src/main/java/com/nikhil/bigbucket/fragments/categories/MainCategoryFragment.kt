@@ -1,5 +1,6 @@
 package com.nikhil.bigbucket.fragments.categories
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -129,10 +130,65 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
     }
 
     private fun setupBestProductsRv() {
+        var spanCount = 2
+        val config: Configuration = resources.configuration
+
+        // Check the screen size category
+        when (config.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK) {
+            Configuration.SCREENLAYOUT_SIZE_SMALL -> {
+                when (resources.configuration.orientation) {
+                    Configuration.ORIENTATION_PORTRAIT -> {
+                        spanCount = 1
+                    }
+
+                    Configuration.ORIENTATION_LANDSCAPE -> {
+                        spanCount = 2
+                    }
+
+                    else -> Unit
+                }
+            }
+
+            Configuration.SCREENLAYOUT_SIZE_NORMAL -> {
+                // Check the screen orientation
+                when (resources.configuration.orientation) {
+                    Configuration.ORIENTATION_PORTRAIT -> {
+                        spanCount = 2
+                    }
+
+                    Configuration.ORIENTATION_LANDSCAPE -> {
+                        spanCount = 4
+                    }
+
+                    else -> Unit
+                }
+            }
+
+            Configuration.SCREENLAYOUT_SIZE_LARGE -> {
+                spanCount = 4
+            }
+
+            Configuration.SCREENLAYOUT_SIZE_XLARGE -> {
+                when (resources.configuration.orientation) {
+                    Configuration.ORIENTATION_PORTRAIT -> {
+                        spanCount = 2
+                    }
+
+                    Configuration.ORIENTATION_LANDSCAPE -> {
+                        spanCount = 3
+                    }
+
+                    else -> Unit
+                }
+            }
+
+            else -> Unit
+        }
+
         bestProductsAdapter = BestProductsAdapter()
         binding.rvBestProducts.apply {
             layoutManager =
-                GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+                GridLayoutManager(requireContext(), spanCount, GridLayoutManager.VERTICAL, false)
             adapter = bestProductsAdapter
         }
     }

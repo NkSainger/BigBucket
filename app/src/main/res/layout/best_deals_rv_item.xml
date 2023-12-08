@@ -8,27 +8,31 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="88dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/bestDealProductImage"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvDealProductName"
-            android:layout_width="@dimen/_70sdp"
+            android:layout_width="@dimen/_75sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:fontFamily="@font/poppins_light"
             android:text="Scotch Premium"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:textColor="@color/black"
-            android:textSize="11sp"
+            android:textSize="@dimen/_9sdp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/bestDealProductImage"
             app:layout_constraintTop_toTopOf="@id/bestDealProductImage" />
@@ -37,11 +41,11 @@
             android:id="@+id/tvOldPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:fontFamily="@font/sf_pro_display"
-            android:text="$2000"
+            android:text="&#x20B9;2000"
             android:textColor="@color/g_gray700"
-            android:textSize="12sp"
+            android:textSize="@dimen/_10sdp"
             app:layout_constraintStart_toEndOf="@id/productNewPrice"
             app:layout_constraintTop_toBottomOf="@id/tvDealProductName" />
 
@@ -50,23 +54,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display"
-            android:text="$1600"
+            android:text="&#x20B9;1600"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="@dimen/_10sdp"
             app:layout_constraintStart_toStartOf="@id/tvDealProductName"
             app:layout_constraintTop_toBottomOf="@id/tvDealProductName" />
 
         <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/btn_see_product"
             android:layout_width="@dimen/_83sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:layout_marginStart="20dp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginStart="@dimen/_17sdp"
             android:background="@drawable/blue_background"
             android:fontFamily="@font/poppins_light"
             android:text="See product"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="10sp"
+            android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvDealProductName"

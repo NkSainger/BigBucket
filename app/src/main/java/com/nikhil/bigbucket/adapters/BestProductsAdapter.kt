@@ -1,6 +1,7 @@
 package com.nikhil.bigbucket.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -14,12 +15,22 @@ class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProduct
     inner class BestProductsViewHolder(private val binding: ProductRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
-            val newPrice = product.price - (product.price * product.offerPercentage!!)
-            binding.apply {
-                Glide.with(itemView).load(product.images[0]).into(productImage)
-                productName.text = product.name
-                productPrice.text = product.price.toString()
-                productNewPrice.text = newPrice.toString()
+            if (product.offerPercentage != null) {
+                val newPrice = product.price - (product.price * product.offerPercentage)
+                binding.apply {
+                    Glide.with(itemView).load(product.images[0]).into(productImage)
+                    productName.text = product.name
+                    productPrice.text = product.price.toString()
+                    productNewPrice.text = newPrice.toString()
+                }
+            } else {
+                binding.productNewPrice.visibility = View.GONE
+
+                binding.apply {
+                    Glide.with(itemView).load(product.images[0]).into(productImage)
+                    productName.text = product.name
+                    productPrice.text = product.price.toString()
+                }
             }
         }
     }

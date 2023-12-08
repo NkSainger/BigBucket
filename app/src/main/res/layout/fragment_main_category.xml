@@ -44,7 +44,7 @@
                 android:layout_marginTop="@dimen/_17sdp"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:text="Best Deals"
-                android:textSize="22sp"
+                android:textSize="@dimen/_17sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rvSpecialProducts" />
@@ -65,7 +65,7 @@
                 android:layout_marginTop="@dimen/_23sdp"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:text="Best Products"
-                android:textSize="22sp"
+                android:textSize="@dimen/_17sdp"
                 app:layout_constraintStart_toStartOf="@+id/rvSpecialProducts"
                 app:layout_constraintTop_toBottomOf="@+id/rvBestDealsProducts" />
 
@@ -73,6 +73,7 @@
                 android:id="@+id/rvBestProducts"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:overScrollMode="never"

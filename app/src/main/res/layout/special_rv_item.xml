@@ -6,6 +6,7 @@
     app:cardBackgroundColor="@color/g_card_background"
     app:cardCornerRadius="5dp"
     app:cardElevation="0dp"
+    android:layout_marginEnd="@dimen/_6sdp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +42,7 @@
             android:layout_width="@dimen/_80sdp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display"
-            android:text="$1600"
+            android:text="&#x20B9;1600"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/tvSpecialProductName"
@@ -51,13 +52,13 @@
             android:id="@+id/btn_add_to_cart"
             android:layout_width="@dimen/_77sdp"
             android:layout_height="@dimen/_25sdp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:background="@drawable/blue_background"
             android:fontFamily="@font/poppins_light"
             android:text="Add to cart"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="11sp"
+            android:textSize="@dimen/_9sdp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSpecialProductPrice" />
